@@ -476,7 +476,7 @@ void HandleOrphan(char *name)
 	}
 
    if(doAddFlow(buf,basename,type,mode))
-   	osDelete(name); /* Orphan file no longer needed */
+      osDelete(name); /* Orphan file no longer needed */
 
 	UnlockBasename(basename);
 }
