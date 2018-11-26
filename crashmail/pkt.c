@@ -89,6 +89,7 @@ bool ReadPkt(char *pkt,struct osFileEntry *fe,bool bundled,bool (*handlefunc)(st
    bool pkt_pw,pkt_4d,pkt_5d;
    int res;
 
+   (void)bundled; /* Silence unused warning. */
    if(config.cfg_BeforeToss[0])
    {
       ExpandPacker(config.cfg_BeforeToss,buf,200,"",pkt);

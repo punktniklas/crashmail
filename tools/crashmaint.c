@@ -85,6 +85,7 @@ bool ctrlc;
 
 void breakfunc(int x)
 {
+   (void)x; /* Silence unused warning. */
    ctrlc=TRUE;
 }
 
