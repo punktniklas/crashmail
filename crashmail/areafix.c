@@ -732,7 +732,7 @@ bool AreaFix(struct MemMessage *mm)
 void SendRemoveMessages(struct Area *area)
 {
    struct TossNode *tn;
-   char buf[100];
+   char buf[128];
    struct MemMessage *mm;
 	
    for(tn=(struct TossNode *)area->TossNodes.First;tn;tn=tn->Next)
