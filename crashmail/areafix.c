@@ -732,7 +732,7 @@ bool AreaFix(struct MemMessage *mm)
 void SendRemoveMessages(struct Area *area)
 {
    struct TossNode *tn;
-   char buf[100];
+   char buf[128];
    struct MemMessage *mm;
 	
    for(tn=(struct TossNode *)area->TossNodes.First;tn;tn=tn->Next)
@@ -1472,10 +1472,19 @@ void afAddLine(struct afReply *afr,char *fmt,...)
 
    if(afr->lines >= config.cfg_AreaFixMaxLines-2 && config.cfg_AreaFixMaxLines!=0)
    {
+      int ret;
+
       strcpy(buf,"\x0d(Continued in next message)\x0d");
 		mmAddLine(afr->mm,buf);
 
-      sprintf(afr->mm->Subject,"%s (part %d)",afr->subject,afr->part);
+      ret=snprintf(afr->mm->Subject,sizeof(afr->mm->Subject),"%s (part %d)",afr->subject,afr->part);
+      if (ret < 0 || ret > sizeof(afr->mm->Subject))
+      {
+         /* FIXME: For now we leave the Subject truncated. This block
+            is only here to silence -Wformat-truncation= compiler
+            warnings. */
+         strcpy(afr->mm->Subject,afr->subject);
+      }
       afSendMessage(afr);
       jbFreeList(&afr->mm->TextChunks);
 
@@ -1503,8 +1512,16 @@ void afAddLine(struct afReply *afr,char *fmt,...)
 void afSendMessage(struct afReply *afr)
 {
    if(afr->part != 1) 
-		sprintf(afr->mm->Subject,"%s (part %d)",afr->subject,afr->part);
-
+	{
+		int ret=snprintf(afr->mm->Subject,sizeof(afr->mm->Subject),"%s (part %d)",afr->subject,afr->part);
+		if (ret < 0 || ret > sizeof(afr->mm->Subject))
+		{
+			/* FIXME: For now we leave the Subject truncated. This block
+				is only here to silence -Wformat-truncation= compiler
+				warnings. */
+			strcpy(afr->mm->Subject,afr->subject);
+		}
+	}
 	else					
 		strcpy(afr->mm->Subject,afr->subject);
 		

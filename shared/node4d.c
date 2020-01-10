@@ -15,6 +15,7 @@ bool Parse4DTemplate(char *buf, struct Node4D *node,struct Node4D *tpl)
 	GotNode=FALSE;
 	
 	GotVal=FALSE;
+	val=0; /* Silence false warning about uninitialized variable. */
 
 	Copy4D(node,tpl);
 

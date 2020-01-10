@@ -536,6 +536,7 @@ void CleanUp(int err)
 
 void breakfunc(int x)
 {
+   (void)x; /* Silence unused warning. */
    ctrlc=TRUE;
 }
 

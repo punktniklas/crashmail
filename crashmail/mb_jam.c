@@ -329,6 +329,7 @@ bool jam_importfunc(struct MemMessage *mm,struct Area *area)
 
    msgpos=0;
    msgsize=0;
+   msgtext=NULL; /* Silence false warning about uninitialized variable. */
 
    for(chunk=(struct TextChunk *)mm->TextChunks.First;chunk;chunk=chunk->Next)
       msgsize+=chunk->Length;

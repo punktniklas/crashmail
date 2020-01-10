@@ -6,6 +6,7 @@
 
 bool osCheckPattern(char *pattern)
 {
+   (void)pattern; /* Silence unused warning. */
    return(TRUE);
 }
 

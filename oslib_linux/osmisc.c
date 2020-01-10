@@ -18,6 +18,7 @@
 void osSetComment(char *file,char *comment)
 {
    /* Does not exist in this os */
+   (void)file, (void)comment; /* Silence unused warning. */
 }
 
 /* Returns -1 if dir was not found and errorlevel otherwise */

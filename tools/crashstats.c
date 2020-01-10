@@ -326,6 +326,7 @@ bool ctrlc;
 
 void breakfunc(int x)
 {
+   (void)x; /* Silence unused warning. */
    ctrlc=TRUE;
 }
 
@@ -391,7 +392,13 @@ int main(int argc, char **argv)
       exit(OS_EXIT_ERROR);
    }
 
-   printf("CrashStats "VERSION" © "  COPYRIGHT " Johan Billing\n");
+#ifdef PLATFORM_AMIGA
+   /* ISO-8859-1 copyright sign. */
+   printf("CrashStats "VERSION" \xa9 "  COPYRIGHT " Johan Billing\n");
+#else
+   /* UTF-8 copyright sign. */
+   printf("CrashStats "VERSION" \xc2\xa9 "  COPYRIGHT " Johan Billing\n");
+#endif
 
    if(!(fh=osOpen(args[ARG_FILE].data,MODE_OLDFILE)))
    {

@@ -194,6 +194,7 @@ int filter_comparetext(char *var,struct MemMessage *mm,bool kludge,char *operato
    struct TextChunk *chunk;
    long start,pos,c;
 
+   (void)datan; /* Silence unused warning. */
    if(operator[0]==0)
    {
       sprintf(errbuf,"%s is not a boolean variable",var);

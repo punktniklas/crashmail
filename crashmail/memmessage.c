@@ -47,6 +47,7 @@ void mmRemNodes2DList(struct jbList *list,uint16_t net,uint16_t node)
    struct Nodes2D *tmplist;
    uint16_t num;
 
+   (void)node; /* Silence unused warning. */
    for(tmplist=(struct Nodes2D *)list->First;tmplist;tmplist=tmplist->Next)
       for(num=0;num<tmplist->Nodes;num++)
          if(tmplist->Net[num]==net && tmplist->Node[num]==num)
