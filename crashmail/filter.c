@@ -236,7 +236,7 @@ int filter_comparetext(char *var,struct MemMessage *mm,bool kludge,char *operato
 int filter_evalfunc(char *str,int *errpos,char **errstr)
 {
    char type[20],source[20];
-   static char errbuf[100];
+   static char errbuf[131];
    struct Aka *aka;
    struct ConfigNode *cnode;
    bool fileattach,tolocalaka,fromlocalaka,tolocalpoint,fromlocalpoint;
