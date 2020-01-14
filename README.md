@@ -1,4 +1,4 @@
-**This project is no longer maintained.**
+**The original author (larsk) is no longer maintaining CrashMail. I (punktniklas) am not really maintaining it either but for the time being I'm happy to accept pull requests with fixes to this repository.**
 
 CrashMail II
 ============
